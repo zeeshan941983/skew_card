@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:skew_card/widget/app_size.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+////part 1 animation from top to bottom show when swipe
+class Part1HomeScreen extends StatefulWidget {
+  const Part1HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<Part1HomeScreen> createState() => _Part1HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _Part1HomeScreenState extends State<Part1HomeScreen> {
   List<String> images = [
     'assets/1.png',
     'assets/33.jpg',
@@ -49,6 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
   final PageController _pageController = PageController(initialPage: 0);
   int _currentPage = 0;
+  bool isnext = false;
 
   @override
   Widget build(BuildContext context) {
@@ -59,6 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
           controller: _pageController,
           onPageChanged: (int page) {
             setState(() {
+              isnext = page > _currentPage;
               _currentPage = page;
 
               imageDetails[page]['isShow'] = true;
